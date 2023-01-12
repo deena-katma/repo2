@@ -1,4 +1,4 @@
-name: Add issues to project
+name: Add cards to project
 
 on:
   issues:
@@ -6,8 +6,8 @@ on:
       - opened
 
 jobs:
-  add-to-project:
-    name: Add issue to project
+  add-bug-to-project:
+    name: Add bug to project
     runs-on: ubuntu-latest
     steps:
       - uses: actions/add-to-project@v0.4.0
@@ -16,4 +16,13 @@ jobs:
           github-token: ${{ secrets.SECRET_TOKEN }}
           labeled: bug, needs-triage
           label-operator: OR
+          
+  add-issue-to-project:
+    name: Add issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v0.4.0
+        with:
+          project-url: https://github.com/users/deena-katma/projects/3
+          github-token: ${{ secrets.SECRET_TOKEN }}
           
