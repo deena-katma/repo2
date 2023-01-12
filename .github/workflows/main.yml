@@ -16,7 +16,6 @@ jobs:
           github-token: ${{ secrets.SECRET_TOKEN }}
           labeled: bug, needs-triage
           label-operator: OR
-          
   add-issue-to-project:
     name: Add issue to project
     runs-on: ubuntu-latest
