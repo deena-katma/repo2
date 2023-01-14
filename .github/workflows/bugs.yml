@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Triage issues
-      if: github.event_name == 'issues' and github.event 
+      if: github.event_name == 'issues' 
       uses: konradpabjan/actions-add-new-issue-to-column@v1.1
       with:
         action-token: ${{ secrets.SECRET_TOKEN }}
