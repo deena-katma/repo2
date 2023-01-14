@@ -10,8 +10,8 @@ jobs:
       uses: konradpabjan/actions-add-new-issue-to-column@v1.1
       with:
         action-token: ${{ secrets.SECRET_TOKEN }}
-        project-url: https://github.com/users/deena-katma/projects/3
-        column-name: Bug
+        project-url: "https://github.com/users/deena-katma/projects/3"
+        column-name: "Bug"
         
 # name: Add bugs to project
 
