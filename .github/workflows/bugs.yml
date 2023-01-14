@@ -1,19 +1,34 @@
-name: Add bugs to project
-
 on:
   issues:
-    types:
-      - opened
-
+    types: [opened, reopened]
 jobs:
-  add-bug-to-project:
-    name: Add bug to project
+  Add_New_Issue_To_Project:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/add-to-project@v0.4.0
-        with:
-          project-url: https://github.com/users/deena-katma/projects/3
-          github-token: ${{ secrets.SECRET_TOKEN }}
-          labeled: bug, needs-triage
-          label-operator: OR
-          column-name: Bug
+    - name: Triage issues
+      if: github.event_name == 'issues' and github.event 
+      uses: konradpabjan/actions-add-new-issue-to-column@v1.1
+      with:
+        action-token: ${{ secrets.SECRET_TOKEN }}
+        project-url: https://github.com/users/deena-katma/projects/3
+        column-name: Bug
+        
+# name: Add bugs to project
+
+# on:
+#   issues:
+#     types:
+#       - opened
+
+# jobs:
+#   add-bug-to-project:
+#     name: Add bug to project
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/add-to-project@v0.4.0
+#         with:
+#           project-url: https://github.com/users/deena-katma/projects/3
+#           github-token: ${{ secrets.SECRET_TOKEN }}
+#           labeled: bug, needs-triage
+#           label-operator: OR
+#           column-name: Bug
