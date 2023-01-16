@@ -1,16 +1,35 @@
-name: Add a new GitHub Project card linked to a GitHub issue to the specified project column
-on: [issues, pull_request]
+name: Add bugs to project
+
+on:
+  issues:
+    types:
+      - opened
+
 jobs:
-  github-actions-automate-projects:
+  add-bug-to-project:
+    name: Add bug to project
     runs-on: ubuntu-latest
     steps:
-    - name: add-new-issues-to-repository-based-project-column
-      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
-      if: github.event_name == 'issues' && github.event.action == 'opened'
-      env:
-        GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
-        GITHUB_PROJECT_URL: https://github.com/users/deena-katma/projects/6
-        GITHUB_PROJECT_COLUMN_NAME: Bug
+      - uses: actions/add-to-project@v0.4.0
+        with:
+          project-url: https://github.com/users/deena-katma/projects/3
+          github-token: ${{ secrets.SECRET_TOKEN }}
+          
+
+# name: Add a new GitHub Project card linked to a GitHub issue to the specified project column
+# on: [issues, pull_request]
+# jobs:
+#   github-actions-automate-projects:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: add-new-issues-to-repository-based-project-column
+#       uses: docker://takanabe/github-actions-automate-projects:v0.0.1
+#       if: github.event_name == 'issues' && github.event.action == 'opened'
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
+#         GITHUB_PROJECT_URL: https://github.com/users/deena-katma/projects/6
+#         GITHUB_PROJECT_COLUMN_NAME: Bug
+# -------------------
 #     - name: add-new-prs-to-repository-based-project-column
 #       uses: docker://takanabe/github-actions-automate-projects:v0.0.1
 #       if: github.event_name == 'pull_request' && github.event.action == 'opened'
@@ -19,22 +38,3 @@ jobs:
 #         GITHUB_PROJECT_URL: https://github.com/takanabe/github-actions-automate-projects/projects/1
 #         GITHUB_PROJECT_COLUMN_NAME: To do
         
-# name: Add bugs to project
-
-# on:
-#   issues:
-#     types:
-#       - opened
-
-# jobs:
-#   add-bug-to-project:
-#     name: Add bug to project
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/add-to-project@v0.4.0
-#         with:
-#           project-url: https://github.com/users/deena-katma/projects/3
-#           github-token: ${{ secrets.SECRET_TOKEN }}
-#           labeled: bug, needs-triage
-#           label-operator: OR
-#           column-name: Bug
